@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-krynox-captcha"
+version = "0.1.0"
+description = "Krynox Captcha for Django — privacy-first, proof-of-work CAPTCHA form field."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Krynox" }]
+keywords = ["django", "captcha", "krynox", "spam", "proof-of-work", "privacy"]
+dependencies = ["Django>=4.2"]
+
+[project.urls]
+Homepage = "https://krynox.id"
+Repository = "https://github.com/krynox-security/plugin-django"
+Documentation = "https://krynox.id/docs"
+
+[tool.setuptools]
+packages = ["krynox_captcha"]
