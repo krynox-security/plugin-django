@@ -31,7 +31,7 @@ class KrynoxCaptchaField(forms.Field):
     def clean(self, value):
         value = super().clean(value)  # honours `required`
         secret = getattr(settings, "KRYNOX_SECRET_KEY", "")
-        api = getattr(settings, "KRYNOX_API_HOST", "https://api.krynox.id")
+        api = getattr(settings, "KRYNOX_API_HOST", "https://api.krynox.net")
         result = verify(secret, value, api_host=api)
         if not result.get("success"):
             raise ValidationError(self.error_messages["krynox"], code="krynox")
