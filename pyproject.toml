@@ -16,7 +16,7 @@ dependencies = ["Django>=4.2"]
 [project.urls]
 Homepage = "https://krynox.net"
 Repository = "https://github.com/krynox-security/plugin-django"
-Documentation = "https://krynox.net/docs"
+Documentation = "https://docs.krynox.net"
 
 [tool.setuptools]
 packages = ["krynox_captcha"]
