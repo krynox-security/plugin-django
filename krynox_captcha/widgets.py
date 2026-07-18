@@ -20,8 +20,8 @@ class KrynoxCaptchaWidget(forms.Widget):
         return data.get("krynox-captcha")
 
     def render(self, name, value, attrs=None, renderer=None):
-        cdn = getattr(settings, "KRYNOX_CDN_HOST", "https://cdn.krynox.id").rstrip("/")
-        api = getattr(settings, "KRYNOX_API_HOST", "https://api.krynox.id").rstrip("/")
+        cdn = getattr(settings, "KRYNOX_CDN_HOST", "https://cdn.krynox.net").rstrip("/")
+        api = getattr(settings, "KRYNOX_API_HOST", "https://api.krynox.net").rstrip("/")
         site_key = getattr(settings, "KRYNOX_SITE_KEY", "")
         challenge = f"{api}/challenge?sitekey={quote(str(site_key), safe='')}"
         return mark_safe(

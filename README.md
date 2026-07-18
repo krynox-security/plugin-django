@@ -14,8 +14,8 @@ Add your keys to `settings.py`:
 KRYNOX_SITE_KEY = "kcpt_live_xxx"
 KRYNOX_SECRET_KEY = "kcps_live_xxx"
 # optional, for self-hosting:
-# KRYNOX_API_HOST = "https://api.krynox.id"
-# KRYNOX_CDN_HOST = "https://cdn.krynox.id"
+# KRYNOX_API_HOST = "https://api.krynox.net"
+# KRYNOX_CDN_HOST = "https://cdn.krynox.net"
 ```
 
 (No need to add to `INSTALLED_APPS` — it's just a form field.)
@@ -45,8 +45,14 @@ result = verify(settings.KRYNOX_SECRET_KEY, request.POST.get("krynox-captcha"),
 if not result["success"]:
     ...
 # result["risk"] => "low" | "medium" | "high"
+# result["reasons"] => ["tor-exit", ...]; result["agent"]; result["human"]
 ```
+
+`verify()` returns the full contract — `success`, `score`, `risk`, `hostname`, `challenge_ts`,
+`error_codes`, `reasons`, `agent` (`{verified, name, allowlisted}` or `None`), `human`
+(`{attested, method, issuer}` or `None`). Transient failures (network / 429 / 5xx) are retried
+automatically (`retries=`, default 2) with a per-verify idempotency key.
 
 ## License
 
-MIT. Built for [Krynox Captcha](https://krynox.id) · docs: <https://krynox.id/docs>
+MIT. Built for [Krynox Captcha](https://krynox.net) · docs: <https://krynox.net/docs>
