@@ -14,9 +14,15 @@ class KrynoxCaptchaWidget(forms.Widget):
     """Renders the widget script + element. The web component injects the solved
     token as a hidden ``krynox-captcha`` field, which we read back on submit."""
 
+    #: Honeypot decoy value captured on the last bind (the field reads it to forward).
+    honeypot = None
+
     def value_from_datadict(self, data, files, name):
         # The widget always submits its solution under the fixed "krynox-captcha"
-        # key, regardless of the Django form field's name.
+        # key, regardless of the Django form field's name. It also injects a hidden
+        # "krynox-hp" decoy field (only bots fill it) — stash it here since this is
+        # the one seam with access to the whole submitted data dict.
+        self.honeypot = data.get("krynox-hp")
         return data.get("krynox-captcha")
 
     def render(self, name, value, attrs=None, renderer=None):
