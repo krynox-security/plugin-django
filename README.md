@@ -29,7 +29,16 @@ from krynox_captcha import KrynoxCaptchaField
 class SignupForm(forms.Form):
     email = forms.EmailField()
     captcha = KrynoxCaptchaField()
+
+    def __init__(self, *args, request=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        if request is not None:
+            self.fields["captcha"].set_request(request)
 ```
+
+Instantiate it with `SignupForm(request.POST, request=request)`. The field forwards
+`REMOTE_ADDR`; configure your WSGI/ASGI server's trusted-proxy handling rather than
+reading an untrusted `X-Forwarded-For` header directly.
 
 Render the form as usual (`{{ form }}`) — the field outputs the widget script and the
 `<krynox-captcha>` element. On submit, `form.is_valid()` verifies the solution

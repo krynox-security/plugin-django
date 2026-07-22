@@ -24,16 +24,35 @@ class KrynoxCaptchaField(forms.Field):
         "krynox": _("CAPTCHA verification failed. Please try again."),
     }
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, *args, remoteip=None, **kwargs):
+        self.remoteip = remoteip
         kwargs.setdefault("label", "")
         super().__init__(*args, **kwargs)
+
+    def set_request(self, request):
+        """Bind a request to this form instance using Django's socket peer IP.
+
+        If Django is behind a proxy, configure the web server/framework to expose
+        a trusted peer. Raw X-Forwarded-For is intentionally not read here.
+        """
+        self.remoteip = request.META.get("REMOTE_ADDR") if request is not None else None
+        return self
+
+    def _remoteip(self):
+        return self.remoteip() if callable(self.remoteip) else self.remoteip
 
     def clean(self, value):
         value = super().clean(value)  # honours `required`
         secret = getattr(settings, "KRYNOX_SECRET_KEY", "")
         api = getattr(settings, "KRYNOX_API_HOST", "https://api.krynox.net")
         honeypot = getattr(self.widget, "honeypot", None)
-        result = verify(secret, value, api_host=api, honeypot=honeypot)
+        result = verify(
+            secret,
+            value,
+            remoteip=self._remoteip(),
+            api_host=api,
+            honeypot=honeypot,
+        )
         if not result.get("success"):
             raise ValidationError(self.error_messages["krynox"], code="krynox")
         return value
