@@ -53,6 +53,14 @@ if not result["success"]:
 (`{attested, method, issuer}` or `None`). Transient failures (network / 429 / 5xx) are retried
 automatically (`retries=`, default 2) with a per-verify idempotency key.
 
+## Honeypot
+
+Enable **Honeypot** for the site in the Krynox dashboard and the widget injects an invisible decoy
+field (`krynox-hp`) that only bots fill in. `KrynoxCaptchaField` forwards it to `/siteverify` as
+`honeypot` automatically — no code change needed. The data plane then floors the score (report mode)
+or rejects with `honeypot-tripped` (enforce mode). See the
+[Honeypot docs](https://docs.krynox.net/server-side/honeypot/).
+
 ## License
 
 MIT. Built for [Krynox Captcha](https://krynox.net) · docs: <https://docs.krynox.net>

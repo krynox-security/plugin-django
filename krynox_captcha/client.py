@@ -17,6 +17,7 @@ def verify(
     api_host: str = "https://api.krynox.net",
     timeout: float = 5.0,
     remoteip: Optional[str] = None,
+    honeypot: Optional[str] = None,
     retries: int = 2,
 ) -> dict:
     """Verify a solved token against POST /siteverify.
@@ -34,7 +35,13 @@ def verify(
     endpoint = api_host.rstrip("/") + "/siteverify"
     key = secrets.token_hex(16) if retries > 0 else None
     body = json.dumps(
-        {"secret": secret, "response": response, "remoteip": remoteip, "idempotency_key": key}
+        {
+            "secret": secret,
+            "response": response,
+            "remoteip": remoteip,
+            "honeypot": honeypot,
+            "idempotency_key": key,
+        }
     ).encode()
 
     data = _post(endpoint, body, timeout=timeout, retries=retries)
