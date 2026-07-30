@@ -1,0 +1,62 @@
+{
+  "krynox_captcha/__init__.py": {
+    "mtime": 1782298972.1813428,
+    "ast_hash": "57874d33b744aa72a992bebfb444e54e",
+    "semantic_hash": "57874d33b744aa72a992bebfb444e54e"
+  },
+  "krynox_captcha/client.py": {
+    "mtime": 1784711053.392231,
+    "ast_hash": "3cb5dfa47c429dc126c8684ec9c5c93c",
+    "semantic_hash": "3cb5dfa47c429dc126c8684ec9c5c93c"
+  },
+  "krynox_captcha/fields.py": {
+    "mtime": 1784711207.8482096,
+    "ast_hash": "6a233d14aca18cc36043f62afb4308d3",
+    "semantic_hash": "6a233d14aca18cc36043f62afb4308d3"
+  },
+  "krynox_captcha/widgets.py": {
+    "mtime": 1784711053.392348,
+    "ast_hash": "c085487957a7c89d1e861c0111ce5c8f",
+    "semantic_hash": "c085487957a7c89d1e861c0111ce5c8f"
+  },
+  "pyproject.toml": {
+    "mtime": 1784711053.3848174,
+    "ast_hash": "53cd1aef725b0212d9f0c84cf39a48e3",
+    "semantic_hash": "53cd1aef725b0212d9f0c84cf39a48e3"
+  },
+  "tests/__init__.py": {
+    "mtime": 1785087512.3890996,
+    "ast_hash": "d41d8cd98f00b204e9800998ecf8427e",
+    "semantic_hash": "d41d8cd98f00b204e9800998ecf8427e"
+  },
+  "tests/test_integration.py": {
+    "mtime": 1785087543.6992295,
+    "ast_hash": "d1b7b6d1066ab5cb128b87788939a917",
+    "semantic_hash": "d1b7b6d1066ab5cb128b87788939a917"
+  },
+  ".github/workflows/ci.yml": {
+    "mtime": 1785087564.4943159,
+    "ast_hash": "60557eb1da9d8a424d9a2fa1ccb560ce",
+    "semantic_hash": ""
+  },
+  ".github/workflows/release.yml": {
+    "mtime": 1784711137.0428467,
+    "ast_hash": "3f0068b9fb3d944c141f9a80326d127a",
+    "semantic_hash": ""
+  },
+  ".github/workflows/security.yml": {
+    "mtime": 1784954389.3555129,
+    "ast_hash": "6dbceda29d9c387a0060b94dc394809a",
+    "semantic_hash": ""
+  },
+  "CHANGELOG.md": {
+    "mtime": 1784714233.546776,
+    "ast_hash": "8dcd39c91cfcb759d49dca9ded956eee",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1784711137.0428467,
+    "ast_hash": "ac54dbd58fcea003ef2c12deff610cad",
+    "semantic_hash": ""
+  }
+}
